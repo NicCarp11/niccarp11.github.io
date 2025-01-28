@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- unicode -->
+    <meta charset="utf-8">
+
+    <!-- this makes the site responsive -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- page title -->
+    <title>{{ .Site.Title}} | {{ .Title }}</title>
+
+    {{ partial "spock.html" . }}
+
+    {{ partial "head_includes.html" . }}
+
+    <!-- sitewide css -->
+    <link rel="stylesheet" href="/css/style.css">
+  </head>
+<body>
+
+<div class="nav">
+  <div class="nav-left">
+    <a href="/">{{ .Site.Params.Author }}'s Frontpage</a>
+  </div>
+
+  {{ if (and .IsHome (and .Params.toc (not .Params.toc_inline))) }}
+    <div class="nav-center hidden-mobile">
+      {{ .TableOfContents }}
+    </div>
+  {{ end }}
+
+  <div class="nav-right">
+    <a href="/posts">Blog</a>
+  </div>
+</div>

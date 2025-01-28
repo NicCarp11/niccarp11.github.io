@@ -1,0 +1,29 @@
+{{ partial "header.html" . }}
+
+<h1>{{ .Title }}</h1>
+
+{{ if .Params.description }}
+  <blockquote>
+    {{ .Params.description }}
+  </blockquote>
+{{ end }}
+
+{{ if .Params.date }}
+  <p>
+    {{ .Site.Params.author }}, {{ .Date.Format .Site.Params.dateform }}
+  </p>
+{{ end }}
+
+{{ if (or .Params.description .Params.date) }}
+  <hr />
+{{ end }}
+
+{{ if .Params.toc }}
+  <h2 class="toc-title">Contents</h2>
+    {{ .TableOfContents }}
+  <hr>
+{{ end }}
+
+{{ .Content }}
+
+{{ partial "footer.html" . }}

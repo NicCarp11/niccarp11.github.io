@@ -1,0 +1,22 @@
+{{ partial "header.html" . }}
+
+{{ .Content }}
+
+<div class="blog">
+{{ range where .Site.RegularPages "Section" "posts" }}
+  <a href={{ .Permalink }}>
+    <div class="post-summary">
+      {{ if .Draft }}
+        <div class="title">DRAFT: {{ .Title }}</div>
+      {{ else }}
+        <div class="title">{{ .Title }}</div>
+      {{ end }}
+      <div class="date">{{ .Date.Format .Site.Params.dateform }}</div>
+      <div class="description">{{ .Description }}</div>
+      <div class="minutes">{{ .ReadingTime }} minute read</div>
+    </div>
+  </a>
+{{ end }}
+</div>
+
+{{ partial "footer.html" . }}
