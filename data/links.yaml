@@ -1,0 +1,35 @@
+- personal:
+  - cv:
+    linkText: "CV"
+    icon: "fa-solid fa-file-pdf"
+    link: "CV.pdf"
+
+  - email:
+    linkText: "e-Mail"
+    icon: "fa-solid fa-at"
+    link: "mailto:nic.carp11@gmail.com"
+
+
+
+- social:
+  - linkedin:
+    linkText: "LinkedIn"
+    icon: "fa-brands fa-linkedin"
+    link: "https://www.linkedin.com/in/nicolo-carpentieri/"
+
+  - twitter:
+    linkText: "Twitter"
+    icon: "fa-brands fa-twitter"
+    link: "https://x.com/carpeniem11?s=11"
+
+  - github:
+    linkText: "GitHub"
+    icon: "fa-brands fa-github"
+    link: "https://github.com/NicCarp11"
+
+
+- research:
+  - entry: 'orcid'
+    linkText: "Orcid"
+    icon: "ai ai-orcid"
+    link: "https://orcid.org/0009-0007-4703-7862"

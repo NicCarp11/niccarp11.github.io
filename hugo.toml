@@ -1,0 +1,16 @@
+baseURL = "https://niccarp11.github.io/"
+languageCode = "en-us"
+title = "Nicolò Carpentieri"
+theme = "hugo-theme-motherfuckingwebsite"
+enableRobotsTXT = true
+paginate = 5
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+[params]
+  author = 'Nicolò Carpentieri'
+  dateform = 'Jan 02, 2006'
+  #Logo = 'https://scholar.googleusercontent.com/citations?view_op=view_photo&user=lXtqvU0AAAAJ&citpid=3'
+  #Logo = 'https://pbs.twimg.com/profile_images/1646221313906704404/MKlGYus3_400x400.jpg'
+  Logo = '/images/nicolo.png'
