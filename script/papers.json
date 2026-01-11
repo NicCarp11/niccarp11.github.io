@@ -1,0 +1,21 @@
+[
+  {
+    "venue": "ASPLOS'26",
+    "title": "vCXLGen: Automated Synthesis and Verification of CXL Bridges for Heterogeneous Architectures",
+    "authors": "Anatole Lefort, Julian Pritzi, Nicolò Carpentieri, David Schall, Simon Dittrich, Soham Chakraborty, Nicolai Oswald, Pramod Bhatotia",
+    "conference": "ASPLOS '26: Proceedings of the 31st ACM International Conference on Architectural Support for Programming Languages and Operating Systems",
+    "pdf": "",
+    "slides": "",
+    "code": ""
+  },
+   {
+    "venue": "HPCA'26",
+    "title": "C3: CXL Coherence Controllers for Heterogeneous Architectures",
+    "authors": "Anatole Lefort, David Schall, Nicolò Carpentieri, Julian Pritzi, Nicolai Oswald, Pramod Bhatotia",
+    "conference": "HPCA '26: nternational Symposium on High-Performance Computer Architecture",
+    "pdf": "",
+    "slides": "",
+    "code": ""
+  }
+]
+
