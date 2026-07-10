@@ -1,21 +1,42 @@
 [
   {
-    "venue": "ASPLOS'26",
-    "title": "vCXLGen: Automated Synthesis and Verification of CXL Bridges for Heterogeneous Architectures",
-    "authors": "Anatole Lefort, Julian Pritzi, Nicolò Carpentieri, David Schall, Simon Dittrich, Soham Chakraborty, Nicolai Oswald, Pramod Bhatotia",
-    "conference": "ASPLOS '26: Proceedings of the 31st ACM International Conference on Architectural Support for Programming Languages and Operating Systems",
+    "venue": "MICRO 2026",
+    "title": "Decoupling Protocol, Topology, and Policy for Automated Synthesis of Coherence Controllers",
+    "authors": "Nicolò Carpentieri, Anatole Lefort, David Schall, Julian Pritzi, Pramod Bhatotia",
+    "conference": "MICRO '26: Proceedings of the 59th IEEE/ACM International Symposium on Microarchitecture",
+    "award": "",
     "pdf": "",
     "slides": "",
     "code": ""
   },
-   {
-    "venue": "HPCA'26",
+  {
+    "venue": "ASPLOS 2026",
+    "title": "vCXLGen: Automated Synthesis and Verification of CXL Bridges for Heterogeneous Architectures",
+    "authors": "Anatole Lefort, Julian Pritzi, Nicolò Carpentieri, David Schall, Simon Dittrich, Soham Chakraborty, Nicolai Oswald, Pramod Bhatotia",
+    "conference": "ASPLOS '26: Proceedings of the 31st ACM International Conference on Architectural Support for Programming Languages and Operating Systems",
+    "award": "Best Paper Award",
+    "pdf": "/papers/vcxlgen-asplos26-preprint.pdf",
+    "slides": "/papers/vcxlgen-asplos26-slides.pdf",
+    "code": "https://github.com/TUM-DSE/vcxlgen"
+  },
+  {
+    "venue": "HPCA 2026",
     "title": "C3: CXL Coherence Controllers for Heterogeneous Architectures",
     "authors": "Anatole Lefort, David Schall, Nicolò Carpentieri, Julian Pritzi, Nicolai Oswald, Pramod Bhatotia",
-    "conference": "HPCA '26: nternational Symposium on High-Performance Computer Architecture",
-    "pdf": "",
-    "slides": "",
-    "code": ""
+    "conference": "HPCA '26: Proceedings of the IEEE International Symposium on High-Performance Computer Architecture",
+    "award": "",
+    "pdf": "/papers/c3-hpca26.pdf",
+    "slides": "/papers/c3-hpca26-slides.pdf",
+    "code": "https://github.com/TUM-DSE/C3"
+  },
+  {
+    "venue": "CF 2024",
+    "title": "Performance Evaluation of Acceleration of Convolutional Layers on OpenEdgeCGRA",
+    "authors": "Nicolò Carpentieri, Juan Sapriza, Davide Schiavone, Daniele Jahier Pagliari, David Atienza, Maurizio Martina, Alessio Burrello",
+    "conference": "CF '24: Proceedings of the 21st ACM International Conference on Computing Frontiers: Workshops and Special Sessions",
+    "award": "",
+    "pdf": "/papers/cf24-cgra.pdf",
+    "slides": "/papers/Carpentieri_CF24-OSHW-CGRAconvolution.pdf",
+    "code": "https://github.com/esl-epfl/HEEPsilon/tree/convolution_exploration"
   }
 ]
-
