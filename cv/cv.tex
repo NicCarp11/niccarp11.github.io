@@ -1,59 +1,120 @@
+% Compile with: lualatex cv.tex
 \documentclass[11pt]{article}
 
-\usepackage[margin=1in]{geometry}
-\usepackage[T1]{fontenc}
-\usepackage{hyperref}
+\usepackage[top=0.85in, bottom=0.85in, left=0.9in, right=0.9in]{geometry}
+\usepackage{fontspec}
+\usepackage{xcolor}
+\usepackage{amssymb}
+\usepackage{microtype}
 \usepackage{fancyhdr}
+\usepackage{hyperref}
+
+% ---- Palette (matches niccarp11.github.io light theme) --------------------
+\definecolor{accent}{HTML}{B8622C}
+\definecolor{accentstrong}{HTML}{94491D}
+\definecolor{ink}{HTML}{1C1A17}
+\definecolor{muted}{HTML}{5B564E}
+\definecolor{faint}{HTML}{8A8478}
+\definecolor{rulecol}{HTML}{D8D2C6}
+
+% ---- Fonts (shipped with the site) ----------------------------------------
+\setmainfont{spectral}[
+  Path = ../fonts/spectral/,
+  Extension = .ttf,
+  UprightFont = *-regular,
+  BoldFont = *-bold,
+  ItalicFont = *-italic,
+]
+\newfontfamily\mono{iosevka-term}[
+  Path = ../fonts/iosevka/,
+  Extension = .ttf,
+  UprightFont = *-regular,
+  BoldFont = *-bold,
+  ItalicFont = *-italic,
+]
+\newfontfamily\tracked{iosevka-term}[
+  Path = ../fonts/iosevka/,
+  Extension = .ttf,
+  UprightFont = *-regular,
+  BoldFont = *-bold,
+  LetterSpace = 6.0,
+]
+
+\color{ink}
+\linespread{1.04}
 
 \hypersetup{
   colorlinks=true,
-  urlcolor=black,
-  linkcolor=black,
+  urlcolor=accentstrong,
+  linkcolor=accentstrong,
+  pdftitle={Nicolò Carpentieri --- Curriculum Vitae},
+  pdfauthor={Nicolò Carpentieri},
 }
 
+% ---- Section headings: numbered, mono, accented, ruled --------------------
+\newcounter{cvsec}
+\newcommand{\snum}{\ifnum\value{cvsec}<10 0\fi\arabic{cvsec}}
 \newcommand{\cvsection}[1]{%
-  \vspace{14pt}%
-  {\large\bfseries #1}\\[-4pt]%
-  \vspace{2pt}\hrule\vspace{6pt}%
+  \vspace{11pt}\refstepcounter{cvsec}%
+  {\tracked\footnotesize\bfseries\textcolor{accent}{\snum}\hspace{9pt}%
+   \textcolor{ink}{\MakeUppercase{#1}}}\par%
+  \vspace{3.5pt}{\color{rulecol}\hrule height 0.6pt}\vspace{7pt}%
 }
 
+% ---- Entry: bold title, right-aligned mono date ---------------------------
+\newcommand{\entry}[3]{%
+  \textbf{#1}\hfill{\mono\footnotesize\textcolor{muted}{#2}}\\
+  #3%
+}
+
+% ---- Reusable bits --------------------------------------------------------
+\newcommand{\me}{\textbf{Nicolò Carpentieri}}
+\newcommand{\venue}[1]{{\mono\footnotesize\textcolor{accentstrong}{#1}}}
+\newcommand{\authors}[1]{{\small\textcolor{muted}{#1}}}
+
+% ---- Page furniture -------------------------------------------------------
 \pagestyle{fancy}
 \fancyhf{}
-\fancyhead[L]{\footnotesize\itshape Nicolò Carpentieri}
-\fancyhead[R]{\footnotesize\thepage}
+\fancyhead[L]{\mono\scriptsize\textcolor{faint}{Nicolò Carpentieri}}
+\fancyhead[R]{\mono\scriptsize\textcolor{faint}{\thepage}}
 \renewcommand{\headrulewidth}{0pt}
-\fancypagestyle{firstpage}{
-  \fancyhf{}
-  \renewcommand{\headrulewidth}{0pt}
-}
+\fancypagestyle{firstpage}{\fancyhf{}\renewcommand{\headrulewidth}{0pt}}
 
 \setlength{\parindent}{0pt}
 
-\newcommand{\entry}[3]{%
-  \textbf{#1} \hfill \textit{#2}\\
-  #3
-}
+% Tighter, evenly-spaced publication list without enumitem
+\newenvironment{cvlist}{%
+  \begin{list}{\mono\footnotesize\textcolor{accent}{[\arabic{enumi}]}}{%
+    \usecounter{enumi}%
+    \setlength{\leftmargin}{2.1em}\setlength{\labelwidth}{1.6em}%
+    \setlength{\labelsep}{0.5em}%
+    \setlength{\itemsep}{6pt}\setlength{\parsep}{0pt}\setlength{\topsep}{3pt}%
+  }%
+}{\end{list}}
 
 \begin{document}
 \thispagestyle{firstpage}
 
-{\LARGE \textbf{Nicolò Carpentieri}}
+% ---- Masthead -------------------------------------------------------------
+{\mono\fontsize{23}{27}\selectfont\bfseries N\textcolor{accent}{i}colò Carpentieri}\\[3pt]
+{\tracked\footnotesize\textcolor{faint}{\MakeUppercase{Systems \& Computer Architecture}}}
 
-\vspace{2pt}
+\vspace{7pt}
 \noindent
-\begin{minipage}[t]{0.62\textwidth}
+\begin{minipage}[t]{0.60\textwidth}
 PhD Candidate, Systems Research Group\\
 Technical University of Munich
 \end{minipage}%
 \hfill
-\begin{minipage}[t]{0.35\textwidth}
+\begin{minipage}[t]{0.38\textwidth}
 \raggedleft
+{\mono\footnotesize
 \href{https://niccarp11.github.io}{niccarp11.github.io}\\
-\href{mailto:nic.carp11@gmail.com}{nic.carp11@gmail.com}
+\href{mailto:nic.carp11@gmail.com}{nic.carp11@gmail.com}}
 \end{minipage}
 
-\vspace{6pt}
-\hrule
+\vspace{8pt}
+{\color{rulecol}\hrule height 0.9pt}
 
 \cvsection{Research Interests}
 My interests lie in \textbf{computer architecture and systems}, particularly \textbf{memory disaggregation} at rack scale and the scale-up interconnects, like CXL and related fabrics, that make it possible. Within that space, I focus on \textbf{cache coherence protocols} for heterogeneous accelerators, including GPUs, and on automating the design and verification of the controllers that implement them.
@@ -64,13 +125,13 @@ Technical University of Munich\\
 \textit{Advisor}: Prof. Dr. Pramod Bhatotia
 }
 
-\vspace{8pt}
+\vspace{7pt}
 \entry{M.Sc. in Computer Engineering}{2021 -- 2024}{
 Politecnico di Torino\\
 \textit{Thesis}: Designing and Evaluating Mapping of CNN Layers on an Edge-CGRA, in collaboration with the Embedded Systems Laboratory (ESL), EPFL
 }
 
-\vspace{8pt}
+\vspace{7pt}
 \entry{B.Sc. in Electronic Engineering}{2018 -- 2021}{
 Politecnico di Torino
 }
@@ -81,39 +142,44 @@ Mapping of convolutional neural network algorithms onto CGRA architectures, in c
 }
 
 \cvsection{Publications}
-\begin{enumerate}
+\begin{cvlist}
 \item Decoupling Protocol, Topology, and Policy for Automated Synthesis of Coherence Controllers\\
-\textbf{Nicolò Carpentieri}, Anatole Lefort, David Schall, Julian Pritzi, Pramod Bhatotia\\
-\textbf{IEEE/ACM MICRO 2026}
+\authors{\me, Anatole Lefort, David Schall, Julian Pritzi, Pramod Bhatotia}\\
+\venue{IEEE/ACM MICRO 2026}
 
 \item vCXLGen: Automated Synthesis and Verification of CXL Bridges for Heterogeneous Architectures\\
-Anatole Lefort, Julian Pritzi, \textbf{Nicolò Carpentieri}, David Schall, Simon Dittrich, Soham Chakraborty, Nicolai Oswald, Pramod Bhatotia\\
-\textbf{ACM ASPLOS 2026}\\
-$\star$ \textbf{Best Paper Award}
+\authors{Anatole Lefort, Julian Pritzi, \me, David Schall, Simon Dittrich, Soham Chakraborty, Nicolai Oswald, Pramod Bhatotia}\\
+\venue{ACM ASPLOS 2026}\ \ {\textcolor{accent}{$\bigstar$}}\,\textbf{Best Paper Award}
 
 \item C3: CXL Coherence Controllers for Heterogeneous Architectures\\
-Anatole Lefort, David Schall, \textbf{Nicolò Carpentieri}, Julian Pritzi, Nicolai Oswald, Pramod Bhatotia\\
-\textbf{IEEE HPCA 2026}
+\authors{Anatole Lefort, David Schall, \me, Julian Pritzi, Nicolai Oswald, Pramod Bhatotia}\\
+\venue{IEEE HPCA 2026}
 
 \item Performance Evaluation of Acceleration of Convolutional Layers on OpenEdgeCGRA\\
-\textbf{Nicolò Carpentieri}, Juan Sapriza, Davide Schiavone, Daniele Jahier Pagliari, David Atienza, Maurizio Martina, Alessio Burrello\\
-\textbf{ACM CF 2024}
-\end{enumerate}
+\authors{\me, Juan Sapriza, Davide Schiavone, Daniele Jahier Pagliari, David Atienza, Maurizio Martina, Alessio Burrello}\\
+\venue{ACM CF 2024}
+\end{cvlist}
+
+\cvsection{Talks}
+ProtoSLICC: Automated Synthesis of Gem5-based Cache Coherence Controllers\\
+\authors{gem5 Workshop @ ISCA 2025, Tokyo, Japan} \hfill {\mono\footnotesize\textcolor{muted}{Jun 2025}}
+
+\cvsection{Academic Service}
+\textbf{Artifact Evaluation Committee}\hfill{\mono\footnotesize\textcolor{muted}{2026}}\\
+\authors{ACM ASPLOS 2026}
 
 \cvsection{Honors and Awards}
-Induction in IEEE-HKN (Mu Nu Chapter), Politecnico di Torino chapter --- June 2022
+Induction in IEEE-HKN (Mu Nu Chapter), Politecnico di Torino chapter \hfill {\mono\footnotesize\textcolor{muted}{Jun 2022}}
 
 \cvsection{Teaching}
-Introduction to Software Engineering (EIST): 2024 -- 2025, 2025 -- 2026\\
-Systems Programming: 2026 -- 2027
+Introduction to Software Engineering (EIST) \textit{--- Examiner} \hfill {\mono\footnotesize\textcolor{muted}{2024--2026}}\\
+Systems Programming \textit{--- Course Organizer} \hfill {\mono\footnotesize\textcolor{muted}{2026--2027}}
 
 \cvsection{Supervised Theses}
-\begin{enumerate}
-\item Disaggregated, Vendor-Generic APUs with CXL\\
-Victor Fritz Trost, B.Sc. Thesis, SS 2025
-\end{enumerate}
+Disaggregated, Vendor-Generic APUs with CXL\\
+\authors{Victor Fritz Trost --- B.Sc. Thesis} \hfill {\mono\footnotesize\textcolor{muted}{SS 2025}}
 
 \cvsection{Technical Skills}
-C, C++, Python, VHDL, Verilog
+{\mono\small C \textcolor{faint}{\textperiodcentered} C++ \textcolor{faint}{\textperiodcentered} Python \textcolor{faint}{\textperiodcentered} VHDL \textcolor{faint}{\textperiodcentered} Verilog}
 
 \end{document}
