@@ -302,6 +302,21 @@ em { color: var(--text-muted); }
   margin: 0 0 2px;
 }
 .timeline-sub { color: var(--text-muted); font-size: 0.94rem; margin: 0; }
+.timeline-bullets {
+  margin: 8px 0 0;
+  padding-left: 1.1em;
+  list-style: none;
+  color: var(--text-muted);
+  font-size: 0.94rem;
+}
+.timeline-bullets li { position: relative; margin-bottom: 3px; }
+.timeline-bullets li:last-child { margin-bottom: 0; }
+.timeline-bullets li::before {
+  content: "\2022";
+  position: absolute;
+  left: -1.1em;
+  color: var(--accent);
+}
 
 /* ============ Publications ============ */
 .pub-list { display: flex; flex-direction: column; gap: 22px; }
