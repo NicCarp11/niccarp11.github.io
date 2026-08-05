@@ -1,7 +1,7 @@
 % Compile with: lualatex cv.tex
 \documentclass[11pt]{article}
 
-\usepackage[top=0.85in, bottom=0.85in, left=0.9in, right=0.9in]{geometry}
+\usepackage[top=0.7in, bottom=0.6in, left=0.9in, right=0.9in]{geometry}
 \usepackage{fontspec}
 \usepackage{xcolor}
 \usepackage{amssymb}
@@ -41,7 +41,7 @@
 ]
 
 \color{ink}
-\linespread{1.04}
+\linespread{1.02}
 
 \hypersetup{
   colorlinks=true,
@@ -55,7 +55,7 @@
 \newcounter{cvsec}
 \newcommand{\snum}{\ifnum\value{cvsec}<10 0\fi\arabic{cvsec}}
 \newcommand{\cvsection}[1]{%
-  \vspace{11pt}\refstepcounter{cvsec}%
+  \vspace{8pt}\refstepcounter{cvsec}%
   {\tracked\footnotesize\bfseries\textcolor{accent}{\snum}\hspace{9pt}%
    \textcolor{ink}{\MakeUppercase{#1}}}\par%
   \vspace{3.5pt}{\color{rulecol}\hrule height 0.6pt}\vspace{7pt}%
@@ -82,13 +82,28 @@
 
 \setlength{\parindent}{0pt}
 
+% ---- Subsection label inside a section ------------------------------------
+\newcommand{\cvsub}[1]{%
+  {\tracked\scriptsize\textcolor{muted}{\MakeUppercase{#1}}}\par\vspace{4pt}%
+}
+
 % Tighter, evenly-spaced publication list without enumitem
-\newenvironment{cvlist}{%
-  \begin{list}{\mono\footnotesize\textcolor{accent}{[\arabic{enumi}]}}{%
+% Optional argument prefixes the labels, e.g. \begin{cvlist}[C] -> [C1]
+\newenvironment{cvlist}[1][]{%
+  \begin{list}{\mono\footnotesize\textcolor{accent}{[#1\arabic{enumi}]}}{%
     \usecounter{enumi}%
-    \setlength{\leftmargin}{2.1em}\setlength{\labelwidth}{1.6em}%
+    \setlength{\leftmargin}{2.4em}\setlength{\labelwidth}{1.9em}%
     \setlength{\labelsep}{0.5em}%
-    \setlength{\itemsep}{6pt}\setlength{\parsep}{0pt}\setlength{\topsep}{3pt}%
+    \setlength{\itemsep}{5pt}\setlength{\parsep}{0pt}\setlength{\topsep}{3pt}%
+  }%
+}{\end{list}}
+
+% Compact bullets for project descriptions
+\newenvironment{cvbullets}{%
+  \begin{list}{\textcolor{accent}{\textbullet}}{%
+    \setlength{\leftmargin}{1.3em}\setlength{\labelwidth}{0.9em}%
+    \setlength{\labelsep}{0.4em}%
+    \setlength{\itemsep}{2pt}\setlength{\parsep}{0pt}\setlength{\topsep}{4pt}%
   }%
 }{\end{list}}
 
@@ -125,30 +140,43 @@ Technical University of Munich\\
 \textit{Advisor}: Prof. Dr. Pramod Bhatotia
 }
 
-\vspace{7pt}
+\vspace{5pt}
 \entry{M.Sc. in Computer Engineering}{2021 -- 2024}{
 Politecnico di Torino\\
 \textit{Thesis}: Designing and Evaluating Mapping of CNN Layers on an Edge-CGRA
 }
 
-\vspace{7pt}
+\vspace{5pt}
 \entry{B.Sc. in Electronic Engineering}{2018 -- 2021}{
 Politecnico di Torino
 }
 
-\cvsection{Research Experience}
+\cvsection{Experience}
+\cvsub{Research}
+\entry{Ph.D. Researcher, Technical University of Munich}{Oct 2024 -- present}{
+\textit{Group}: Chair of Computer Systems \textcolor{faint}{\textperiodcentered} \textit{Host}: Prof. Dr. Pramod Bhatotia
+\begin{cvbullets}
+\item \textbf{CXL memory consistency}: shared remote CXL memory across heterogeneous architectures.
+\item \textbf{CXL bridges}: integrating CXL 3.0 cache coherence into arbitrary host architectures.
+\item \textbf{CXL GPUs}: GPUs with CXL 3.0 integration for symmetric cache coherence with host CPUs.
+\end{cvbullets}
+}
+
+\vspace{7pt}
+\cvsub{Undergraduate research project}
 \entry{Visiting Student, Embedded Systems Laboratory (ESL), EPFL}{2023 -- 2024}{
 Mapping of convolutional neural network algorithms onto CGRA architectures, in collaboration with DAUIN, Politecnico di Torino.
 }
 
 \cvsection{Publications}
-\begin{cvlist}
+\cvsub{Conferences}
+\begin{cvlist}[C]
 \item Decoupling Protocol, Topology, and Policy for Automated Synthesis of Coherence Controllers\\
 \authors{\me, Anatole Lefort, David Schall, Julian Pritzi, Pramod Bhatotia}\\
 \venue{IEEE/ACM MICRO 2026}
 
 \item vCXLGen: Automated Synthesis and Verification of CXL Bridges for Heterogeneous Architectures\\
-\authors{Anatole Lefort, Julian Pritzi, \me, David Schall, Simon Dittrich, Soham Chakraborty, Nicolai Oswald, Pramod Bhatotia}\\
+\authors{Anatole Lefort\textsuperscript{*}, Julian Pritzi\textsuperscript{*}, \me, David Schall, Simon Dittrich, Soham Chakraborty, Nicolai Oswald, Pramod Bhatotia \textcolor{faint}{(\textsuperscript{*}equal contribution)}}\\
 \venue{ACM ASPLOS 2026}\ \ {\textcolor{accent}{$\bigstar$}}\,\textbf{Best Paper Award}
 
 \item C3: CXL Coherence Controllers for Heterogeneous Architectures\\
@@ -160,27 +188,50 @@ Mapping of convolutional neural network algorithms onto CGRA architectures, in c
 \venue{ACM CF 2024}
 \end{cvlist}
 
+\vspace{7pt}
+\cvsub{Journals}
+\begin{cvlist}[J]
+\item Invited extended journal version of \textit{vCXLGen: Automated Synthesis and Verification of CXL Bridges for Heterogeneous Architectures}\\
+\authors{Anatole Lefort\textsuperscript{*}, Julian Pritzi\textsuperscript{*}, \me, David Schall, Simon Dittrich, Soham Chakraborty, Nicolai Oswald, Pramod Bhatotia \textcolor{faint}{(\textsuperscript{*}equal contribution)}}\\
+\venue{ACM Transactions on Computer Systems (TOCS)}\ \ \textcolor{muted}{forthcoming, 2026}
+\end{cvlist}
+
 \cvsection{Talks}
+\cvsub{Conferences}
+Decoupling Protocol, Topology, and Policy for Automated Synthesis of Coherence Controllers\\
+\authors{IEEE/ACM MICRO 2026, Athens, Greece} \hfill {\mono\footnotesize\textcolor{muted}{2026}}
+
+\vspace{7pt}
+\cvsub{Workshops}
 ProtoSLICC: Automated Synthesis of Gem5-based Cache Coherence Controllers\\
-\authors{gem5 Workshop @ ISCA 2025, Tokyo, Japan} \hfill {\mono\footnotesize\textcolor{muted}{Jun 2025}}
+\authors{gem5 Workshop @ ISCA 2025, Tokyo, Japan} \hfill {\mono\footnotesize\textcolor{muted}{2025}}
 
 \cvsection{Academic Service}
 \textbf{Artifact Evaluation Committee}\hfill{\mono\footnotesize\textcolor{muted}{2026}}\\
 \authors{ACM ASPLOS 2026}\\
 \authors{IEEE/ACM MICRO 2026}
 
-\cvsection{Honors and Awards}
-Induction in IEEE-HKN (Mu Nu Chapter), Politecnico di Torino chapter \hfill {\mono\footnotesize\textcolor{muted}{Jun 2022}}
+\cvsection{Student Volunteering}
+Member, IEEE-HKN (Mu Nu Chapter) \hfill {\mono\footnotesize\textcolor{muted}{2022 -- 2024}}\\
+\authors{Politecnico di Torino}
 
-\cvsection{Teaching}
+\cvsection{Teaching Experience}
 Introduction to Software Engineering (EIST) \textit{--- Examiner} \hfill {\mono\footnotesize\textcolor{muted}{2024--2026}}\\
 Systems Programming \textit{--- Course Organizer} \hfill {\mono\footnotesize\textcolor{muted}{2026--2027}}
 
-\cvsection{Supervised Theses}
+\cvsection{Student Supervision}
 Disaggregated, Vendor-Generic APUs with CXL\\
 \authors{Victor Fritz Trost --- B.Sc. Thesis} \hfill {\mono\footnotesize\textcolor{muted}{SS 2025}}
 
-\cvsection{Technical Skills}
-{\mono\small C \textcolor{faint}{\textperiodcentered} C++ \textcolor{faint}{\textperiodcentered} Python \textcolor{faint}{\textperiodcentered} VHDL \textcolor{faint}{\textperiodcentered} Verilog}
+\cvsection{Honors and Awards}
+Induction in IEEE-HKN (Mu Nu Chapter), Politecnico di Torino chapter \hfill {\mono\footnotesize\textcolor{muted}{Jun 2022}}
+
+\cvsection{Skills}
+\textit{Programming languages}\ \ {\mono\small C/C++ \textcolor{faint}{\textperiodcentered} Verilog HDL \textcolor{faint}{\textperiodcentered} VHDL \textcolor{faint}{\textperiodcentered} Python \textcolor{faint}{\textperiodcentered} Shell script \textcolor{faint}{\textperiodcentered} \LaTeX{} \textcolor{faint}{\textperiodcentered} Matlab}\\[3pt]
+\textit{Development}\ \ {\mono\small Unix/Linux \textcolor{faint}{\textperiodcentered} gem5 simulator \textcolor{faint}{\textperiodcentered} FPGA \textcolor{faint}{\textperiodcentered} CUDA \textcolor{faint}{\textperiodcentered} RDMA}
+
+\cvsection{Other Interests}
+\textit{Sports}\ \ {\mono\small Skiing \textcolor{faint}{\textperiodcentered} Tennis \textcolor{faint}{\textperiodcentered} Football \textcolor{faint}{\textperiodcentered} Basketball \textcolor{faint}{\textperiodcentered} Padel \textcolor{faint}{\textperiodcentered} Volleyball}\\[3pt]
+\textit{Music}\ \ {\mono\small Piano \textcolor{faint}{\textperiodcentered} Flute}
 
 \end{document}

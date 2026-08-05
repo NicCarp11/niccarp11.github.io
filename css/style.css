@@ -338,6 +338,10 @@ em { color: var(--text-muted); }
   font-size: 0.92rem;
   margin: 0 0 6px;
 }
+.pub-note {
+  color: var(--text-faint);
+  font-size: 0.85rem;
+}
 .pub-conf {
   color: var(--text-faint);
   font-size: 0.86rem;
@@ -367,6 +371,7 @@ em { color: var(--text-muted); }
   color: var(--accent-strong);
   background: var(--accent-soft);
 }
+.timeline-links { margin-top: 10px; }
 .pub-links span.disabled {
   font-family: var(--font-mono);
   font-size: 0.78rem;
