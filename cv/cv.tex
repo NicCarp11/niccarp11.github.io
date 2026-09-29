@@ -1,7 +1,7 @@
 % Compile with: lualatex cv.tex
 \documentclass[11pt]{article}
 
-\usepackage[top=0.6in, bottom=0.5in, left=0.8in, right=0.8in]{geometry}
+\usepackage[top=0.55in, bottom=0.45in, left=0.8in, right=0.8in]{geometry}
 \usepackage{fontspec}
 \usepackage{xcolor}
 \usepackage{amssymb}
@@ -56,20 +56,45 @@
 }
 
 % ---- Section headings: bold mono title, rule on the same line -------------
-% Usage: \cvsection{<FA codepoint>}{Title}
-\newcommand{\cvsection}[2]{%
-  \vspace{4.5pt}%
-  \noindent{\faicon\fontsize{10}{12}\selectfont\textcolor{accent}{\symbol{#1}}}\hspace{7pt}%
-  {\mono\fontsize{12.5}{14}\selectfont\bfseries\textcolor{ink}{#2}}%
+\newcommand{\cvsection}[1]{%
+  \vspace{6pt}%
+  \noindent{\mono\fontsize{14}{16}\selectfont\bfseries\textcolor{ink}{#1}}%
   \hspace{9pt}{\color{rulecol}\leaders\vrule height 0.95ex depth -0.85ex\hfill\kern0pt}\par%
   \vspace{3.5pt}%
 }
 
-% ---- Entry: bold title, right-aligned mono date ---------------------------
+% ---- Entry marker: one symbol in front of every entry ---------------------
+% Font Awesome codepoint, e.g. "F061 arrow, "F054 chevron, "F02E bookmark
+\newcommand{\cvicon}{\symbol{"F061}}
+\newlength{\markwidth}\setlength{\markwidth}{16pt}
+\newlength{\entrywidth}\setlength{\entrywidth}{\dimexpr\textwidth-\markwidth\relax}
+\newcommand{\cvmark}{\makebox[\markwidth][l]{\faicon\fontsize{8}{10}\selectfont\textcolor{accent}{\cvicon}}}
+% Right column sized to the date text, so long titles wrap instead of colliding
+\newlength{\datewidth}
+\newcommand{\titledate}[2]{%
+  \settowidth{\datewidth}{\mono\footnotesize #2}%
+  \parbox[t]{\dimexpr\entrywidth-\datewidth-8pt\relax}{\raggedright #1\strut}\hfill%
+  \makebox[\datewidth][r]{\mono\footnotesize\textcolor{muted}{#2}\strut}}
+
+% ---- Entry: marker, bold title, right-aligned mono date, body below -------
 \newcommand{\entry}[3]{%
-  \textbf{#1}\hfill{\mono\footnotesize\textcolor{muted}{#2}}\\
+  \noindent\cvmark\begin{minipage}[t]{\entrywidth}
+  \titledate{\textbf{#1}}{#2}\\
   #3%
+  \end{minipage}\par
 }
+% ---- Row: marker, single line with right-aligned mono date ----------------
+\newcommand{\row}[2]{%
+  \noindent\cvmark\begin{minipage}[t]{\entrywidth}
+  \titledate{#1}{#2}%
+  \end{minipage}\par
+}
+% ---- Full-width row: marker + text, no date column ------------------------
+\newcommand{\rowfull}[1]{%
+  \noindent\cvmark\begin{minipage}[t]{\entrywidth}#1\end{minipage}\par
+}
+% ---- Award: entry with a muted context line -------------------------------
+\newcommand{\award}[3]{\entry{#1}{#2}{{\small\textcolor{muted}{#3}}}}
 
 % ---- Reusable bits --------------------------------------------------------
 \newcommand{\me}{\textbf{Nicolò Carpentieri}}
@@ -87,13 +112,17 @@
 \setlength{\parindent}{0pt}
 
 % ---- Subsection label inside a section ------------------------------------
+% Keep a sub-label together with at least a few lines of what follows
+\newcommand{\needlines}[1]{\par\vskip 0pt plus #1\penalty-100\vskip 0pt plus -#1\relax}
 \newcommand{\cvsub}[1]{%
+  \needlines{4\baselineskip}%
   {\tracked\scriptsize\textcolor{muted}{\MakeUppercase{#1}}}\par\vspace{4pt}%
 }
 
 % Tighter, evenly-spaced publication list without enumitem
 % Optional argument prefixes the labels, e.g. \begin{cvlist}[C] -> [C1]
 \newenvironment{cvlist}[1][]{%
+  \hyphenpenalty=10000 \exhyphenpenalty=10000 \tolerance=2000 \emergencystretch=1em
   \begin{list}{\mono\footnotesize\textcolor{accent}{[#1\arabic{enumi}]}}{%
     \usecounter{enumi}%
     \setlength{\leftmargin}{2.4em}\setlength{\labelwidth}{1.9em}%
@@ -134,10 +163,10 @@ Technical University of Munich
 
 \vspace{2pt}
 
-\cvsection{"F0C3}{Research Interests}
+\cvsection{Research Interests}
 My interests lie in \textbf{computer architecture and systems}, particularly \textbf{memory disaggregation} at rack scale and the scale-up interconnects, like CXL and related fabrics, that make it possible. Within that space, I focus on \textbf{cache coherence protocols} for heterogeneous systems.
 
-\cvsection{"F19D}{Education}
+\cvsection{Education}
 \entry{Ph.D. in Computer Science}{Oct 2024 -- present}{
 Technical University of Munich\\
 \textit{Advisor}: Prof. Dr. Pramod Bhatotia
@@ -154,7 +183,7 @@ Politecnico di Torino\\
 Politecnico di Torino
 }
 
-\cvsection{"F0B1}{Experience}
+\cvsection{Experience}
 \cvsub{Research}
 \entry{Ph.D. Student, Technical University of Munich}{Oct 2024 -- present}{
 \textit{Group}: Chair of Computer Systems \textcolor{faint}{\textperiodcentered} \textit{Host}: Prof. Dr. Pramod Bhatotia
@@ -171,12 +200,12 @@ Politecnico di Torino
 Mapping of convolutional neural network algorithms onto CGRA architectures, in collaboration with DAUIN, Politecnico di Torino.
 }
 
-\cvsection{"F02D}{Publications}
+\cvsection{Publications}
 \cvsub{Conferences}
 \begin{cvlist}[C]
-\item Decoupling Protocol, Topology, and Policy for Automated Synthesis of Coherence Controllers\\
+\item Synapse: Decoupling Protocol, Topology, and Policy for Automated Synthesis of Coherence Controllers\\
 \authors{\me, Anatole Lefort, David Schall, Julian Pritzi, Pramod Bhatotia}\\
-\venue{IEEE/ACM MICRO 2026}
+\venue{IEEE/ACM MICRO 2026}\ \ {\textcolor{accent}{$\bigstar$}}\,\textbf{Distinguished Paper Award Candidate}
 
 \item vCXLGen: Automated Synthesis and Verification of CXL Bridges for Heterogeneous Architectures\\
 \authors{Anatole Lefort\textsuperscript{*}, Julian Pritzi\textsuperscript{*}, \me, David Schall, Simon Dittrich, Soham Chakraborty, Nicolai Oswald, Pramod Bhatotia \textcolor{faint}{(\textsuperscript{*}equal contribution)}}\\
@@ -206,42 +235,43 @@ Mapping of convolutional neural network algorithms onto CGRA architectures, in c
 \venue{Under submission}\ \ \textcolor{muted}{2026}
 \end{cvlist}
 
-\cvsection{"F121}{Projects}
-\textbf{Synapse} --- Generic synthesis of verified, gem5-ready coherence controllers by decoupling protocol, topology, and policy specifications\\
-\authors{\href{https://github.com/TUM-DSE/Synapse}{github.com/TUM-DSE/Synapse}}
+\cvsection{Projects}
+\rowfull{\textbf{Synapse} --- Generic synthesis of verified, gem5-ready coherence controllers by decoupling protocol, topology, and policy specifications\\
+\authors{\href{https://github.com/TUM-DSE/Synapse}{github.com/TUM-DSE/Synapse}}}
 
-\cvsection{"F130}{Talks}
-Decoupling Protocol, Topology, and Policy for Automated Synthesis of Coherence Controllers\\
-\authors{IEEE/ACM MICRO 2026, Athens, Greece} \hfill {\mono\footnotesize\textcolor{muted}{2026}}
+\cvsection{Talks}
+\entry{Synapse: Decoupling Protocol, Topology, and Policy for Automated Synthesis of Coherence Controllers}{2026}{\authors{IEEE/ACM MICRO 2026, Athens, Greece}}
 
-\vspace{5pt}
-Automated Synthesis of Verified CXL Bridges for Heterogeneous Architectures\\
-\authors{DFG SPP 2377 ``Disruptive Memory Technologies'' Annual Meeting, Dresden, Germany} \hfill {\mono\footnotesize\textcolor{muted}{2026}}
+\vspace{3pt}
+\entry{Automated Synthesis of Verified CXL Bridges for Heterogeneous Architectures}{2026}{\authors{DFG SPP 2377 ``Disruptive Memory Technologies'' Annual Meeting, Dresden, Germany}}
 
-\vspace{5pt}
-ProtoSLICC: Automated Synthesis of Gem5-based Cache Coherence Controllers\\
-\authors{gem5 Workshop @ ISCA 2025, Tokyo, Japan} \hfill {\mono\footnotesize\textcolor{muted}{2025}}
+\vspace{3pt}
+\entry{ProtoSLICC: Automated Synthesis of Gem5-based Cache Coherence Controllers}{2025}{\authors{gem5 Workshop @ ISCA 2025, Tokyo, Japan}}
 
-\cvsection{"F0C0}{Academic Service}
-\textbf{Artifact Evaluation Committee}\hfill{\mono\footnotesize\textcolor{muted}{2026}}\\
-\authors{ACM ASPLOS 2026}\\
-\authors{IEEE/ACM MICRO 2026}
+\cvsection{Academic Service}
+\entry{Artifact Evaluation Committee}{2026}{\authors{ACM ASPLOS 2026 \textcolor{faint}{\textperiodcentered} IEEE/ACM MICRO 2026}}
 
-\cvsection{"F51C}{Teaching Experience}
-Introduction to Software Engineering (EIST) \textit{--- Exam Team} \hfill {\mono\footnotesize\textcolor{muted}{2024--2026}}\\
-Systems Programming \textit{--- Course Organizer} \hfill {\mono\footnotesize\textcolor{muted}{2026--2027}}
+\cvsection{Teaching Experience}
+\row{Introduction to Software Engineering (EIST) \textit{--- Exam Team}}{2024--2026}
+\row{Systems Programming \textit{--- Course Organizer}}{2026--2027}
 
-\cvsection{"F501}{Student Supervision}
-Disaggregated, Vendor-Generic APUs with CXL\\
-\authors{Victor Fritz Trost --- B.Sc. Thesis} \hfill {\mono\footnotesize\textcolor{muted}{SS 2025}}
+\cvsection{Student Supervision}
+\entry{Disaggregated, Vendor-Generic APUs with CXL}{SS 2025}{\authors{Victor Fritz Trost --- B.Sc. Thesis}}
 
-\cvsection{"F091}{Honors and Awards}
-Best Paper Award, ACM ASPLOS 2026 \hfill {\mono\footnotesize\textcolor{muted}{2026}}\\
-Induction in IEEE-HKN (Mu Nu Chapter), Politecnico di Torino chapter \hfill {\mono\footnotesize\textcolor{muted}{2022}}
+\cvsection{Honors and Awards}
+\award{Distinguished Paper Award Candidate}{2026}{IEEE/ACM MICRO 2026\\ Synapse: Decoupling Protocol, Topology, and Policy for Automated Synthesis of Coherence Controllers}
+\vspace{3pt}
+\award{Student Travel Grant}{2026}{IEEE/ACM MICRO 2026}
+\vspace{3pt}
+\award{Best Paper Award}{2026}{ACM ASPLOS 2026\\ vCXLGen: Automated Synthesis and Verification of CXL Bridges for Heterogeneous Architectures}
+\vspace{3pt}
+\award{Induction in IEEE-HKN (Mu Nu Chapter)}{2022}{Politecnico di Torino}
 
-\cvsection{"F7D9}{Skills and Interests}
-\textit{Programming languages}\ \ {\mono\small C/C++ \textcolor{faint}{\textperiodcentered} Verilog HDL \textcolor{faint}{\textperiodcentered} VHDL \textcolor{faint}{\textperiodcentered} Python \textcolor{faint}{\textperiodcentered} Shell script \textcolor{faint}{\textperiodcentered} \LaTeX{} \textcolor{faint}{\textperiodcentered} Matlab}\\[3pt]
-\textit{Development}\ \ {\mono\small Unix/Linux \textcolor{faint}{\textperiodcentered} gem5 simulator \textcolor{faint}{\textperiodcentered} FPGA \textcolor{faint}{\textperiodcentered} CUDA \textcolor{faint}{\textperiodcentered} RDMA}\\[3pt]
-\textit{Other interests}\ \ {\mono\small Skiing \textcolor{faint}{\textperiodcentered} Tennis \textcolor{faint}{\textperiodcentered} Football \textcolor{faint}{\textperiodcentered} Basketball \textcolor{faint}{\textperiodcentered} Padel \textcolor{faint}{\textperiodcentered} Volleyball \textcolor{faint}{\textperiodcentered} Piano \textcolor{faint}{\textperiodcentered} Flute}
+\cvsection{Skills and Interests}
+\rowfull{\textit{Programming languages}\ \ {\mono\small C/C++ \textcolor{faint}{\textperiodcentered} Verilog HDL \textcolor{faint}{\textperiodcentered} VHDL \textcolor{faint}{\textperiodcentered} Python \textcolor{faint}{\textperiodcentered} Shell script \textcolor{faint}{\textperiodcentered} \LaTeX{} \textcolor{faint}{\textperiodcentered} Matlab}}
+\vspace{3pt}
+\rowfull{\textit{Development}\ \ {\mono\small Unix/Linux \textcolor{faint}{\textperiodcentered} gem5 simulator \textcolor{faint}{\textperiodcentered} FPGA \textcolor{faint}{\textperiodcentered} CUDA \textcolor{faint}{\textperiodcentered} RDMA}}
+\vspace{3pt}
+\rowfull{\textit{Other interests}\ \ {\mono\small Skiing \textcolor{faint}{\textperiodcentered} Tennis \textcolor{faint}{\textperiodcentered} Football \textcolor{faint}{\textperiodcentered} Basketball \textcolor{faint}{\textperiodcentered} Padel \textcolor{faint}{\textperiodcentered} Volleyball \textcolor{faint}{\textperiodcentered} Piano \textcolor{faint}{\textperiodcentered} Flute}}
 
 \end{document}
