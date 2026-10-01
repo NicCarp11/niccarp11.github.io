@@ -140,6 +140,11 @@
   }%
 }{\end{list}}
 
+% Optional hook, empty in the public CV; a local wrapper can redefine it
+\providecommand{\gradline}{}
+% PhD end date (expected graduation)
+\providecommand{\phdend}{exp.\ Oct 2028}
+
 \begin{document}
 \thispagestyle{firstpage}
 
@@ -167,19 +172,19 @@ Technical University of Munich
 My interests lie in \textbf{computer architecture and systems}, particularly \textbf{memory disaggregation} at rack scale and the scale-up interconnects, like CXL and related fabrics, that make it possible. Within that space, I focus on \textbf{cache coherence protocols} for heterogeneous systems.
 
 \cvsection{Education}
-\entry{Ph.D. in Computer Science}{Oct 2024 -- present}{
-Technical University of Munich\\
+\entry{Ph.D. in Computer Science}{Oct 2024 -- \phdend}{
+Technical University of Munich\gradline\\
 \textit{Advisor}: Prof. Dr. Pramod Bhatotia
 }
 
 \vspace{5pt}
-\entry{M.Sc. in Computer Engineering}{2021 -- 2024}{
+\entry{M.Sc. in Computer Engineering}{Oct 2021 -- Mar 2024}{
 Politecnico di Torino\\
 \textit{Thesis}: Designing and Evaluating Mapping of CNN Layers on an Edge-CGRA
 }
 
 \vspace{5pt}
-\entry{B.Sc. in Electronic Engineering}{2018 -- 2021}{
+\entry{B.Sc. in Electronic Engineering}{Oct 2018 -- Sep 2021}{
 Politecnico di Torino
 }
 
