@@ -82,7 +82,7 @@
 
       <section class="block" id="about">
         <p>I am a PhD student in the Systems Research Group at TU Munich, working in <strong>computer architecture</strong>. My research is on <strong>cache coherence</strong> for <strong>memory disaggregation</strong>: how CPUs, GPUs, and accelerators from different vendors can share data correctly over scale-up interconnects.</p>
-        <p>During my PhD I have been working with <strong>CXL</strong>, in particular on <strong>bridges</strong> able to translate a host's native coherence protocol into CXL. I first studied how to design them (C3), and then how to synthesize and verify them automatically from specifications (vCXLGen). <strong>Synapse</strong> takes this synthesis one step further, from CXL bridges to any coherence controller, by decoupling its protocol, topology, and policy. Next, I am bringing <strong>GPUs</strong> into the same memory pool as CPUs and scaling these ideas beyond a single rack.</p>
+        <p>During my PhD I have been working with <strong>CXL</strong>, in particular on <strong>bridges</strong> able to translate a host's native coherence protocol into CXL. I first studied how to design them (C3), and then how to synthesize and verify them automatically from specifications (vCXLGen). <strong>Synapse</strong> takes this synthesis one step further, from CXL bridges to any coherence controller, by decoupling its protocol, topology, and policy. Next, I am bringing <strong>GPUs</strong> into the same memory pool as CPUs and scaling these ideas <strong>beyond a single rack</strong>.</p>
         <p>Before TUM, my master's thesis at EPFL's Embedded Systems Laboratory mapped convolutional layers onto <strong>OpenEdgeCGRA</strong>, a low-power open-hardware CGRA. Feel free to <a href="mailto:nicolo.carpentieri@tum.de">reach out</a> to collaborate or chat about these topics.</p>
       </section>
 
@@ -296,52 +296,45 @@
         </ul>
       </section>
 
-      <div class="split split-even">
-        <section class="block" id="teaching">
-          <h2 class="block-title">Teaching</h2>
-          <ul class="rows rows-compact">
-            <li>
-              <span class="row-date">2026&ndash;27</span>
-              <div class="row-body">
+      <section class="block" id="teaching">
+        <h2 class="block-title">Teaching, Mentoring &amp; Service</h2>
+        <div class="trio">
+          <div class="trio-col">
+            <h3 class="group-title">Teaching</h3>
+            <ul class="stack">
+              <li>
+                <span class="row-date">2026&ndash;27 &middot; TUM</span>
                 <p class="row-title">Systems Programming</p>
-                <p class="row-sub">Course Organizer, TUM</p>
-              </div>
-            </li>
-            <li>
-              <span class="row-date">2024&ndash;26</span>
-              <div class="row-body">
+                <p class="row-sub">Course Organizer</p>
+              </li>
+              <li>
+                <span class="row-date">2024&ndash;26 &middot; TUM</span>
                 <p class="row-title">Introduction to Software Engineering (EIST)</p>
-                <p class="row-sub">Exam Team, TUM</p>
-              </div>
-            </li>
-          </ul>
-        </section>
-
-        <section class="block" id="mentoring">
-          <h2 class="block-title">Mentoring</h2>
-          <ul class="rows rows-compact">
-            <li>
-              <span class="row-date">SS 2025</span>
-              <div class="row-body">
+                <p class="row-sub">Exam Team</p>
+              </li>
+            </ul>
+          </div>
+          <div class="trio-col" id="mentoring">
+            <h3 class="group-title">Mentoring</h3>
+            <ul class="stack">
+              <li>
+                <span class="row-date">SS 2025 &middot; B.Sc. thesis</span>
                 <p class="row-title">Disaggregated, Vendor-Generic APUs with CXL</p>
-                <p class="row-sub">B.Sc. thesis, Victor Fritz Trost</p>
-              </div>
-            </li>
-          </ul>
-        </section>
-      </div>
-
-      <section class="block" id="service">
-        <h2 class="block-title">Service</h2>
-        <ul class="rows">
-          <li>
-            <span class="row-date">2026</span>
-            <div class="row-body">
-              <p class="row-title">Artifact Evaluation Committee</p>
-              <p class="row-sub">IEEE/ACM MICRO 2026 &middot; ACM ASPLOS 2026</p>
-            </div>
-          </li>
-        </ul>
+                <p class="row-sub">Victor Fritz Trost</p>
+              </li>
+            </ul>
+          </div>
+          <div class="trio-col" id="service">
+            <h3 class="group-title">Service</h3>
+            <ul class="stack">
+              <li>
+                <span class="row-date">2026</span>
+                <p class="row-title">Artifact Evaluation Committee</p>
+                <p class="row-sub">IEEE/ACM MICRO 2026<br>ACM ASPLOS 2026</p>
+              </li>
+            </ul>
+          </div>
+        </div>
       </section>
 
       <section class="block" id="awards">

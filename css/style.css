@@ -452,7 +452,14 @@ em { color: var(--text-muted); }
 
 .split { display: grid; grid-template-columns: 1.25fr 1fr; gap: 32px; border-bottom: 1px solid var(--border); margin-bottom: 30px; }
 .split .block { border-bottom: none; margin-bottom: 0; }
-.split-even { grid-template-columns: 1fr 1fr; }
+/* Teaching, Mentoring & Service: three short columns */
+.trio { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; }
+.trio .group-title { margin-top: 0; }
+.stack { list-style: none; margin: 0; padding: 0; }
+.stack li { padding: 8px 0; border-bottom: 1px dashed var(--border); }
+.stack li:first-child { padding-top: 0; }
+.stack li:last-child { border-bottom: none; }
+.stack .row-date { display: block; padding: 0 0 2px; }
 
 /* ============ Awards ============ */
 .awards { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px 24px; }
@@ -520,7 +527,8 @@ em { color: var(--text-muted); }
   .page { padding-left: 16px; padding-right: 16px; }
   .profile { grid-template-columns: 1fr; }
   .profile-avatar { grid-row: auto; width: 140px; height: 140px; }
-  .projects, .awards, .split { grid-template-columns: 1fr; }
+  .projects, .awards, .split, .trio { grid-template-columns: 1fr; }
+  .trio { gap: 18px; }
   .split { gap: 0; }
   .split .block:first-child { border-bottom: 1px solid var(--border); margin-bottom: 30px; }
   .pub, .news li, .rows li, .rows-compact li { grid-template-columns: 1fr; gap: 4px; }
