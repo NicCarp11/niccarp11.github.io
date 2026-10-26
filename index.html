@@ -81,9 +81,9 @@
     <main class="content">
 
       <section class="block" id="about">
-        <p>I am a PhD student in the Systems Research Group at TU Munich. I work on <strong>computer architecture</strong>, focusing on <strong>cache coherence protocols</strong> for heterogeneous systems and on <strong>memory disaggregation</strong> over scale-up interconnects such as <strong>CXL</strong>.</p>
-        <p>Every host speaks its own coherence protocol, while CXL speaks another. My research makes them interoperate, automatically and correctly: from a methodology to build CXL bridges (C3), to synthesizing and verifying them from specifications (vCXLGen), to generating coherence controllers for any protocol, topology, and policy (Synapse). I am now extending these bridges to GPUs and beyond a single rack.</p>
-        <p>Before TUM, my master's thesis at EPFL's Embedded Systems Laboratory mapped convolutional layers onto <strong>OpenEdgeCGRA</strong>, a low-power open-hardware CGRA. Feel free to <a href="mailto:nicolo.carpentieri@tum.de">reach out</a> to collaborate or chat about research.</p>
+        <p>I am a PhD student in the Systems Research Group at TU Munich, working in <strong>computer architecture</strong>. My research is on <strong>cache coherence</strong> for <strong>memory disaggregation</strong>: how CPUs, GPUs, and accelerators from different vendors can share data correctly over scale-up interconnects.</p>
+        <p>During my PhD I have been working with <strong>CXL</strong>, in particular on <strong>bridges</strong> able to translate a host's native coherence protocol into CXL. I first studied how to design them (C3), and then how to synthesize and verify them automatically from specifications (vCXLGen). <strong>Synapse</strong> takes this synthesis one step further, from CXL bridges to any coherence controller, by decoupling its protocol, topology, and policy. Next, I am bringing <strong>GPUs</strong> into the same memory pool as CPUs and scaling these ideas beyond a single rack.</p>
+        <p>Before TUM, my master's thesis at EPFL's Embedded Systems Laboratory mapped convolutional layers onto <strong>OpenEdgeCGRA</strong>, a low-power open-hardware CGRA. Feel free to <a href="mailto:nicolo.carpentieri@tum.de">reach out</a> to collaborate or chat about these topics.</p>
       </section>
 
       <section class="block" id="education">
@@ -296,9 +296,9 @@
         </ul>
       </section>
 
-      <div class="split">
+      <div class="split split-even">
         <section class="block" id="teaching">
-          <h2 class="block-title">Teaching &amp; Mentoring</h2>
+          <h2 class="block-title">Teaching</h2>
           <ul class="rows rows-compact">
             <li>
               <span class="row-date">2026&ndash;27</span>
@@ -314,36 +314,35 @@
                 <p class="row-sub">Exam Team, TUM</p>
               </div>
             </li>
+          </ul>
+        </section>
+
+        <section class="block" id="mentoring">
+          <h2 class="block-title">Mentoring</h2>
+          <ul class="rows rows-compact">
             <li>
               <span class="row-date">SS 2025</span>
               <div class="row-body">
                 <p class="row-title">Disaggregated, Vendor-Generic APUs with CXL</p>
-                <p class="row-sub">B.Sc. thesis of Victor Fritz Trost</p>
-              </div>
-            </li>
-          </ul>
-        </section>
-
-        <section class="block" id="service">
-          <h2 class="block-title">Service</h2>
-          <ul class="rows rows-compact">
-            <li>
-              <span class="row-date">2026</span>
-              <div class="row-body">
-                <p class="row-title">Artifact Evaluation Committee</p>
-                <p class="row-sub">IEEE/ACM MICRO 2026</p>
-              </div>
-            </li>
-            <li>
-              <span class="row-date">2026</span>
-              <div class="row-body">
-                <p class="row-title">Artifact Evaluation Committee</p>
-                <p class="row-sub">ACM ASPLOS 2026</p>
+                <p class="row-sub">B.Sc. thesis, Victor Fritz Trost</p>
               </div>
             </li>
           </ul>
         </section>
       </div>
+
+      <section class="block" id="service">
+        <h2 class="block-title">Service</h2>
+        <ul class="rows">
+          <li>
+            <span class="row-date">2026</span>
+            <div class="row-body">
+              <p class="row-title">Artifact Evaluation Committee</p>
+              <p class="row-sub">IEEE/ACM MICRO 2026 &middot; ACM ASPLOS 2026</p>
+            </div>
+          </li>
+        </ul>
+      </section>
 
       <section class="block" id="awards">
         <h2 class="block-title">Honors &amp; Awards</h2>

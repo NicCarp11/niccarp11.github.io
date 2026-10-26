@@ -452,6 +452,7 @@ em { color: var(--text-muted); }
 
 .split { display: grid; grid-template-columns: 1.25fr 1fr; gap: 32px; border-bottom: 1px solid var(--border); margin-bottom: 30px; }
 .split .block { border-bottom: none; margin-bottom: 0; }
+.split-even { grid-template-columns: 1fr 1fr; }
 
 /* ============ Awards ============ */
 .awards { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px 24px; }
